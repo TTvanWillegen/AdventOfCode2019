@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 from functools import reduce
@@ -185,24 +186,26 @@ G = '\033[32m'  # green
 O = '\033[33m'  # orange
 B = '\033[34m'  # blue
 P = '\033[35m'  # purple
+res = '\033[F'
 
 
 def draw_screen(positions):
     max_x = reduce(lambda x, y: max(x, y), [i[0] for i in positions.keys()], 0)
     max_y = reduce(lambda x, y: max(x, y), [i[1] for i in positions.keys()], 0)
+    print(res * 46, end='\r')
     for y in range(max_y + 1):
         for x in range(max_x + 1):
             n = positions.get((x, y), 0)
             if n == 1:
-                sys.stdout.write(B + str(n) + W)
+                sys.stdout.write(B + str("█") + W)
             elif n == 2:
-                sys.stdout.write(R + str(n) + W)
+                sys.stdout.write(R + str("█") + W)
             elif n == 3:
-                sys.stdout.write(G + str(n) + W)
+                sys.stdout.write(G + str("╦") + W)
             elif n == 4:
-                sys.stdout.write(O + str(n) + W)
+                sys.stdout.write(O + str("●") + W)
             elif n == 0:
-                sys.stdout.write(P + str(n) + W)
+                sys.stdout.write(P + str(" ") + W)
         sys.stdout.write("\n")
     print(R + str(positions.get((-1, 0), 0)) + W)
 

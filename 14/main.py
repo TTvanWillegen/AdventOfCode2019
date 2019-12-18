@@ -45,7 +45,7 @@ def part_one():
 
 
 def calculate_ore(reactions, levels, required):
-    while len(required) is not 0:
+    while len(required) != 0:
         maxLevel = reduce(lambda i, o: max(levels[o], i) if required[o] != 0 else i, required, 0)
         if maxLevel == 0:
             break

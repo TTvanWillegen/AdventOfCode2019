@@ -8,6 +8,8 @@ def part_one():
     with open("input.txt", "r") as input_file:
         for line in input_file:
             print(line)
+            if len(line.rstrip()) == 0:
+                continue
 
 
 def part_two():
